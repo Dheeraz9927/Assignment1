@@ -44,7 +44,7 @@ class Settings(BaseSettings):
     chunk_overlap: int = 25  # words
     top_k: int = 5
     candidate_k: int = 40
-    hybrid: bool = True
+    hybrid: bool = False  # DEMO: deliberate regression, see docs/gate-failure.md
     rrf_k: int = 60
 
     # Agent
