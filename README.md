@@ -140,6 +140,13 @@ changes needed 0 embeddings.
 | **Permission leaks** | **0** | **0** |
 | Gate | **PASS** | **FAIL** |
 
+The same results in GitHub Actions:
+- `main` [passes the gate](https://github.com/Dheeraz9927/Assignment1/actions/runs/45063166414) with 64/64.
+- `demo/gate-failure` [fails it](https://github.com/Dheeraz9927/Assignment1/actions/runs/45063168696) with 53/64,
+  slightly worse than the local run above.
+
+[docs/gate-failure.md](docs/gate-failure.md) explains the failure and the difference between CI and local.
+
 How the system got to 64/64 is recorded in the eval history, and the steps are worth showing:
 - The first run scored 57/64 with recall@5 of 0.896, and the gate failed.
 - Two fixes followed: (1) exact-identifier matches became their own ranked list in the fusion, because Postgres

@@ -9,9 +9,33 @@ refactor drops the full-text query by accident.
 - Reproduce in the UI: Evaluation → *Run an evaluation* → switch off *Hybrid retrieval*.
 - Committed report: [`eval/results/gate_failure_run.json`](../eval/results/gate_failure_run.json). The passing
   reference is [`eval/results/baseline_run.json`](../eval/results/baseline_run.json).
-- CI: the `demo/gate-failure` branch's *evaluation release gate* job fails with the same table in its job summary.
+- **CI, failing run:** [Actions run 45063168696](https://github.com/Dheeraz9927/Assignment1/actions/runs/45063168696)
+  on `demo/gate-failure`. *lint + tests* passes and *evaluation release gate* fails. The gate table is in the job
+  summary, and the full per-question report is attached as the `eval-report` artifact.
+- **CI, passing reference:** [Actions run 45063166414](https://github.com/Dheeraz9927/Assignment1/actions/runs/45063166414)
+  on `main`. Both jobs pass, with 64 of 64 questions, 100% recall@5 and 0 leaks.
 
-## Gate output
+### CI run vs local run
+
+The CI runner failed slightly harder than the local run: **53 of 64** questions passed instead of 55, and
+`answer_correctness` (77.1%) dropped below its 80% floor as well. The 9 local failures listed below all fail again in
+CI, and two more fail for exactly the same reason: **q019** (compensation review `COMP-9015`) and **q023** (expense
+policy `EXP-488`). In both, an exact identifier is asked about, the expected source is not in the top 5, and the
+assistant refuses. Vector-only ranking among near-identical documents depends on tiny score differences, and those
+can flip between CPU architectures and HNSW builds. That fragility is the reason the keyword and identifier lists
+exist. With hybrid retrieval on, both environments score 64 of 64.
+
+| check | local | CI |
+|---|---|---|
+| questions passed | 55 / 64 | 53 / 64 |
+| recall_at_5 | 0.8125 | 0.7708 |
+| mrr | 0.7115 | 0.6663 |
+| answer_correctness | 0.8125 (passes floor, fails regression) | 0.7708 (fails floor and regression) |
+| false_refusal_rate | 0.1875 | 0.2292 |
+| leakage_count | 0 | 0 |
+| citation_precision | 1.0 | 1.0 |
+
+## Gate output (local run)
 
 | check | kind | value | threshold | baseline | result |
 |---|---|---|---|---|---|
