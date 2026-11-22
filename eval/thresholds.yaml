@@ -1,0 +1,15 @@
+# Release gate. A run fails if ANY check fails.
+# Floors/ceilings are absolute quality bars; regression checks compare against eval/baseline.json
+# (the metrics of the last accepted run on main) and catch smaller drops that still clear the floors.
+floors:
+  recall_at_5: 0.90
+  mrr: 0.80
+  answer_correctness: 0.80
+  citation_precision: 0.85
+  groundedness: 0.85
+  refusal_accuracy: 0.80
+ceilings:
+  leakage_count: 0          # zero tolerance: any permission leak fails the release
+  false_refusal_rate: 0.15
+max_drop_vs_baseline: 0.05
+regression_metrics: [recall_at_5, mrr, ndcg_at_5, answer_correctness, citation_precision, citation_recall, groundedness, refusal_accuracy]

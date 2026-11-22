@@ -1,0 +1,2588 @@
+{
+ "run_id": "20261121-234600-203b",
+ "label": "update-baseline-candidate",
+ "config": {
+  "chunk_size": 120,
+  "chunk_overlap": 25,
+  "top_k": 5,
+  "hybrid": true,
+  "answerer": "ollama",
+  "gen_model": "qwen2.5:1.5b",
+  "embed_model": "nomic-embed-text"
+ },
+ "metrics": {
+  "n_questions": 64,
+  "recall_at_5": 1.0,
+  "mrr": 1.0,
+  "ndcg_at_5": 1.0,
+  "answer_correctness": 1.0,
+  "citation_precision": 1.0,
+  "citation_recall": 0.8958,
+  "groundedness": 0.8958,
+  "refusal_accuracy": 1.0,
+  "false_refusal_rate": 0.0,
+  "leakage_count": 0,
+  "pass_rate": 1.0,
+  "latency_p50_ms": 86.1,
+  "by_type": {
+   "factual": {
+    "n": 38,
+    "pass_rate": 1.0
+   },
+   "multi_doc": {
+    "n": 10,
+    "pass_rate": 1.0
+   },
+   "permission_denied": {
+    "n": 10,
+    "pass_rate": 1.0
+   },
+   "unanswerable": {
+    "n": 6,
+    "pass_rate": 1.0
+   }
+  }
+ },
+ "gate": {
+  "passed": true,
+  "checks": [
+   {
+    "metric": "recall_at_5",
+    "kind": "floor",
+    "threshold": 0.9,
+    "value": 1.0,
+    "passed": true
+   },
+   {
+    "metric": "mrr",
+    "kind": "floor",
+    "threshold": 0.8,
+    "value": 1.0,
+    "passed": true
+   },
+   {
+    "metric": "answer_correctness",
+    "kind": "floor",
+    "threshold": 0.8,
+    "value": 1.0,
+    "passed": true
+   },
+   {
+    "metric": "citation_precision",
+    "kind": "floor",
+    "threshold": 0.85,
+    "value": 1.0,
+    "passed": true
+   },
+   {
+    "metric": "groundedness",
+    "kind": "floor",
+    "threshold": 0.85,
+    "value": 0.8958,
+    "passed": true
+   },
+   {
+    "metric": "refusal_accuracy",
+    "kind": "floor",
+    "threshold": 0.8,
+    "value": 1.0,
+    "passed": true
+   },
+   {
+    "metric": "leakage_count",
+    "kind": "ceiling",
+    "threshold": 0,
+    "value": 0,
+    "passed": true
+   },
+   {
+    "metric": "false_refusal_rate",
+    "kind": "ceiling",
+    "threshold": 0.15,
+    "value": 0.0,
+    "passed": true
+   }
+  ],
+  "failed": []
+ },
+ "results": [
+  {
+   "qid": "q001",
+   "type": "factual",
+   "user": "heidi",
+   "question": "What is the approved budget of Project AQUILA-776?",
+   "expected_answer": "The approved budget of Project AQUILA-776 is $2.9 million.",
+   "expected_doc_ids": [
+    "engineering/projects/aquila-776/spec-aquila-776.md"
+   ],
+   "answer": "The approved budget of Project AQUILA-776 is $2.9 million. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/projects/aquila-776/spec-aquila-776.md",
+    "engineering/projects/aquila-454/spec-aquila-454.md",
+    "engineering/projects/aquila-415/spec-aquila-415.md",
+    "engineering/projects/aquila-657/spec-aquila-657.md",
+    "engineering/projects/aquila-288/spec-aquila-288.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/projects/aquila-776/spec-aquila-776.md"
+   ],
+   "latency_ms": 111.2,
+   "raw_answer": "The approved budget of Project AQUILA-776 is $2.9 million.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q002",
+   "type": "factual",
+   "user": "erin",
+   "question": "What is the approved budget of Project FORNAX-589?",
+   "expected_answer": "The approved budget of Project FORNAX-589 is $5.3 million.",
+   "expected_doc_ids": [
+    "engineering/projects/fornax-589/spec-fornax-589.md"
+   ],
+   "answer": "The approved budget of Project FORNAX-589 is $5.3 million. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/projects/fornax-589/spec-fornax-589.md",
+    "engineering/projects/fornax-406/spec-fornax-406.md",
+    "engineering/projects/fornax-443/spec-fornax-443.md",
+    "engineering/projects/fornax-237/spec-fornax-237.md",
+    "engineering/projects/fornax-684/spec-fornax-684.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/projects/fornax-589/spec-fornax-589.md"
+   ],
+   "latency_ms": 100.0,
+   "raw_answer": "The approved budget of Project FORNAX-589 is $5.3 million.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q003",
+   "type": "factual",
+   "user": "erin",
+   "question": "Who leads Project DRACO-284?",
+   "expected_answer": "Project DRACO-284 is led by Emma Wong.",
+   "expected_doc_ids": [
+    "engineering/projects/draco-284/spec-draco-284.md"
+   ],
+   "answer": "Emma Wong leads Project DRACO-284. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/projects/draco-284/spec-draco-284.md",
+    "engineering/projects/draco-595/spec-draco-595.md",
+    "engineering/projects/draco-943/spec-draco-943.md",
+    "engineering/projects/draco-120/spec-draco-120.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/projects/draco-284/spec-draco-284.md"
+   ],
+   "latency_ms": 82.0,
+   "raw_answer": "Emma Wong leads Project DRACO-284.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 0.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q004",
+   "type": "factual",
+   "user": "dave",
+   "question": "What is the approved budget of Project AQUILA-415?",
+   "expected_answer": "The approved budget of Project AQUILA-415 is $5.1 million.",
+   "expected_doc_ids": [
+    "engineering/projects/aquila-415/spec-aquila-415.md"
+   ],
+   "answer": "The approved budget of Project AQUILA-415 is $5.1 million. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/projects/aquila-415/spec-aquila-415.md",
+    "engineering/projects/aquila-415/status-aquila-415.md",
+    "engineering/projects/aquila-454/spec-aquila-454.md",
+    "engineering/projects/aquila-657/spec-aquila-657.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/projects/aquila-415/spec-aquila-415.md"
+   ],
+   "latency_ms": 75.0,
+   "raw_answer": "The approved budget of Project AQUILA-415 is $5.1 million.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q005",
+   "type": "factual",
+   "user": "dave",
+   "question": "What was the root cause of incident INC-92742?",
+   "expected_answer": "The root cause of incident INC-92742 was an upstream vendor API returning malformed responses.",
+   "expected_doc_ids": [
+    "engineering/internal/incident-inc-92742.md"
+   ],
+   "answer": "The root cause of incident INC-92742 was an upstream vendor API returning malformed responses. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/internal/incident-inc-92742.md",
+    "engineering/internal/incident-inc-96424.md",
+    "engineering/internal/incident-inc-42142.md",
+    "engineering/internal/incident-inc-51218.md",
+    "engineering/internal/incident-inc-92317.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/internal/incident-inc-92742.md"
+   ],
+   "latency_ms": 77.6,
+   "raw_answer": "The root cause of incident INC-92742 was an upstream vendor API returning malformed responses.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q006",
+   "type": "factual",
+   "user": "dave",
+   "question": "How many minutes of downtime did incident INC-36437 cause?",
+   "expected_answer": "Incident INC-36437 caused 77 minutes of downtime.",
+   "expected_doc_ids": [
+    "engineering/internal/incident-inc-36437.md"
+   ],
+   "answer": "Incident INC-36437 caused a total downtime of 77 minutes. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/internal/incident-inc-36437.md",
+    "engineering/internal/incident-inc-34371.md",
+    "engineering/internal/incident-inc-82719.md",
+    "engineering/internal/incident-inc-42983.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/internal/incident-inc-36437.md"
+   ],
+   "latency_ms": 78.0,
+   "raw_answer": "Incident INC-36437 caused a total downtime of 77 minutes.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 0.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q007",
+   "type": "factual",
+   "user": "dave",
+   "question": "How many minutes of downtime did incident INC-58348 cause?",
+   "expected_answer": "Incident INC-58348 caused 261 minutes of downtime.",
+   "expected_doc_ids": [
+    "engineering/internal/incident-inc-58348.md"
+   ],
+   "answer": "Incident INC-58348 caused a total downtime of 261 minutes. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/internal/incident-inc-58348.md",
+    "engineering/internal/incident-inc-82719.md",
+    "engineering/internal/incident-inc-42983.md",
+    "engineering/internal/incident-inc-59668.md",
+    "engineering/internal/incident-inc-58660.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/internal/incident-inc-58348.md"
+   ],
+   "latency_ms": 77.2,
+   "raw_answer": "Incident INC-58348 caused a total downtime of 261 minutes.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 0.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q008",
+   "type": "factual",
+   "user": "dave",
+   "question": "What was the root cause of incident INC-59005?",
+   "expected_answer": "The root cause of incident INC-59005 was a memory leak introduced in the latest release.",
+   "expected_doc_ids": [
+    "engineering/internal/incident-inc-59005.md"
+   ],
+   "answer": "The root cause of incident INC-59005 was a memory leak introduced in the latest release. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/internal/incident-inc-59005.md",
+    "engineering/internal/incident-inc-59047.md",
+    "engineering/internal/incident-inc-71675.md",
+    "engineering/internal/incident-inc-18585.md",
+    "engineering/internal/incident-inc-51218.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/internal/incident-inc-59005.md"
+   ],
+   "latency_ms": 71.1,
+   "raw_answer": "The root cause of incident INC-59005 was a memory leak introduced in the latest release.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q009",
+   "type": "factual",
+   "user": "heidi",
+   "question": "How many minutes of downtime did incident INC-62628 cause?",
+   "expected_answer": "Incident INC-62628 caused 37 minutes of downtime.",
+   "expected_doc_ids": [
+    "engineering/internal/incident-inc-62628.md"
+   ],
+   "answer": "Incident INC-62628 caused a total downtime of 37 minutes. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/internal/incident-inc-62628.md",
+    "engineering/internal/incident-inc-42983.md",
+    "engineering/internal/incident-inc-64580.md",
+    "engineering/internal/incident-inc-51896.md",
+    "engineering/internal/incident-inc-52058.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/internal/incident-inc-62628.md"
+   ],
+   "latency_ms": 100.9,
+   "raw_answer": "Incident INC-62628 caused a total downtime of 37 minutes.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q010",
+   "type": "factual",
+   "user": "heidi",
+   "question": "According to runbook RB-3694, after how many minutes are pages escalated?",
+   "expected_answer": "After 10 minutes without acknowledgement.",
+   "expected_doc_ids": [
+    "engineering/internal/runbook-rb-3694.md"
+   ],
+   "answer": "According to Runbook RB-3694, pages are escalated to the engineering manager after 10 minutes without acknowledgement. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/internal/runbook-rb-3694.md",
+    "engineering/internal/runbook-rb-6099.md",
+    "engineering/internal/runbook-rb-5455.md",
+    "engineering/internal/runbook-rb-8836.md",
+    "engineering/internal/runbook-rb-3727.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/internal/runbook-rb-3694.md"
+   ],
+   "latency_ms": 132.9,
+   "raw_answer": "According to Runbook RB-3694, pages are escalated to the engineering manager after 10 minutes without acknowledgement.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 0.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q011",
+   "type": "factual",
+   "user": "heidi",
+   "question": "According to runbook RB-2961, after how many minutes are pages escalated?",
+   "expected_answer": "After 20 minutes without acknowledgement.",
+   "expected_doc_ids": [
+    "engineering/internal/runbook-rb-2961.md"
+   ],
+   "answer": "According to Runbook RB-2961, pages are escalated to the engineering manager after 20 minutes without acknowledgement. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/internal/runbook-rb-2961.md",
+    "engineering/internal/runbook-rb-2965.md",
+    "engineering/internal/runbook-rb-5455.md",
+    "engineering/internal/runbook-rb-8836.md",
+    "engineering/internal/runbook-rb-3236.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/internal/runbook-rb-2961.md"
+   ],
+   "latency_ms": 137.3,
+   "raw_answer": "According to Runbook RB-2961, pages are escalated to the engineering manager after 20 minutes without acknowledgement.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q012",
+   "type": "factual",
+   "user": "erin",
+   "question": "According to runbook RB-7507, after how many minutes are pages escalated?",
+   "expected_answer": "After 10 minutes without acknowledgement.",
+   "expected_doc_ids": [
+    "engineering/internal/runbook-rb-7507.md"
+   ],
+   "answer": "According to Runbook RB-7507, pages are escalated to the engineering manager after 10 minutes without acknowledgement. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/internal/runbook-rb-7507.md",
+    "engineering/internal/runbook-rb-5455.md",
+    "engineering/internal/runbook-rb-3127.md",
+    "engineering/internal/runbook-rb-6806.md",
+    "engineering/internal/runbook-rb-2531.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/internal/runbook-rb-7507.md"
+   ],
+   "latency_ms": 174.6,
+   "raw_answer": "According to Runbook RB-7507, pages are escalated to the engineering manager after 10 minutes without acknowledgement.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q013",
+   "type": "factual",
+   "user": "heidi",
+   "question": "How many weeks of paid parental leave does HR policy HR-POL-724 provide?",
+   "expected_answer": "HR policy HR-POL-724 provides 16 weeks of paid parental leave.",
+   "expected_doc_ids": [
+    "hr/public/policy-hr-pol-724.md"
+   ],
+   "answer": "Under HR policy HR-POL-724, employees in the Calder office receive 16 weeks of paid parental leave. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "hr/public/policy-hr-pol-724.md",
+    "hr/public/policy-hr-pol-769.md",
+    "hr/public/policy-hr-pol-179.md",
+    "hr/public/policy-hr-pol-404.md",
+    "hr/public/policy-hr-pol-174.md"
+   ],
+   "cited_doc_ids": [
+    "hr/public/policy-hr-pol-724.md"
+   ],
+   "latency_ms": 113.6,
+   "raw_answer": "Under HR policy HR-POL-724, employees in the Calder office receive 16 weeks of paid parental leave.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q014",
+   "type": "factual",
+   "user": "carol",
+   "question": "How many weeks of paid parental leave does HR policy HR-POL-466 provide?",
+   "expected_answer": "HR policy HR-POL-466 provides 8 weeks of paid parental leave.",
+   "expected_doc_ids": [
+    "hr/public/policy-hr-pol-466.md"
+   ],
+   "answer": "Under HR policy HR-POL-466, employees in the Lakemont office receive 8 weeks of paid parental leave. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "hr/public/policy-hr-pol-466.md",
+    "hr/public/policy-hr-pol-656.md",
+    "hr/public/policy-hr-pol-716.md",
+    "hr/public/policy-hr-pol-515.md",
+    "hr/public/policy-hr-pol-546.md"
+   ],
+   "cited_doc_ids": [
+    "hr/public/policy-hr-pol-466.md"
+   ],
+   "latency_ms": 57.5,
+   "raw_answer": "Under HR policy HR-POL-466, employees in the Lakemont office receive 8 weeks of paid parental leave.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q015",
+   "type": "factual",
+   "user": "grace",
+   "question": "How many weeks of paid parental leave does HR policy HR-POL-321 provide?",
+   "expected_answer": "HR policy HR-POL-321 provides 21 weeks of paid parental leave.",
+   "expected_doc_ids": [
+    "hr/public/policy-hr-pol-321.md"
+   ],
+   "answer": "Under HR policy HR-POL-321, employees in the Valewood office receive 21 weeks of paid parental leave. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "hr/public/policy-hr-pol-321.md",
+    "hr/public/policy-hr-pol-268.md",
+    "hr/public/policy-hr-pol-179.md",
+    "hr/public/policy-hr-pol-716.md",
+    "hr/public/policy-hr-pol-515.md"
+   ],
+   "cited_doc_ids": [
+    "hr/public/policy-hr-pol-321.md"
+   ],
+   "latency_ms": 56.9,
+   "raw_answer": "Under HR policy HR-POL-321, employees in the Valewood office receive 21 weeks of paid parental leave.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q016",
+   "type": "factual",
+   "user": "heidi",
+   "question": "How many mandatory training modules does HR process HR-PRC-312 require?",
+   "expected_answer": "4 mandatory training modules.",
+   "expected_doc_ids": [
+    "hr/internal/process-hr-prc-312.md"
+   ],
+   "answer": "HR process HR-PRC-312 requires new joiners to complete 4 mandatory training modules within their first month. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "hr/internal/process-hr-prc-312.md",
+    "hr/internal/process-hr-prc-352.md",
+    "hr/internal/process-hr-prc-326.md",
+    "hr/internal/process-hr-prc-622.md",
+    "hr/internal/process-hr-prc-336.md"
+   ],
+   "cited_doc_ids": [
+    "hr/internal/process-hr-prc-312.md"
+   ],
+   "latency_ms": 121.8,
+   "raw_answer": "HR process HR-PRC-312 requires new joiners to complete 4 mandatory training modules within their first month.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q017",
+   "type": "factual",
+   "user": "heidi",
+   "question": "How many mandatory training modules does HR process HR-PRC-553 require?",
+   "expected_answer": "8 mandatory training modules.",
+   "expected_doc_ids": [
+    "hr/internal/process-hr-prc-553.md"
+   ],
+   "answer": "HR process HR-PRC-553 requires new joiners to complete 8 mandatory training modules within their first month. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "hr/internal/process-hr-prc-553.md",
+    "hr/internal/process-hr-prc-423.md",
+    "hr/internal/process-hr-prc-833.md",
+    "hr/internal/process-hr-prc-352.md",
+    "hr/internal/process-hr-prc-293.md"
+   ],
+   "cited_doc_ids": [
+    "hr/internal/process-hr-prc-553.md"
+   ],
+   "latency_ms": 120.4,
+   "raw_answer": "HR process HR-PRC-553 requires new joiners to complete 8 mandatory training modules within their first month.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q018",
+   "type": "factual",
+   "user": "alice",
+   "question": "What is the new base salary in compensation review COMP-4772?",
+   "expected_answer": "The new base salary is $160,000.",
+   "expected_doc_ids": [
+    "hr/confidential/comp-comp-4772.md"
+   ],
+   "answer": "The new base salary in compensation review COMP-4772 for Tariq Kowalski is $160,000, an increase of 2 percent effective next quarter. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "hr/confidential/comp-comp-4772.md",
+    "hr/confidential/comp-comp-9433.md",
+    "hr/confidential/comp-comp-7444.md",
+    "hr/confidential/comp-comp-4716.md",
+    "hr/confidential/comp-comp-6857.md"
+   ],
+   "cited_doc_ids": [
+    "hr/confidential/comp-comp-4772.md"
+   ],
+   "latency_ms": 58.5,
+   "raw_answer": "The new base salary in compensation review COMP-4772 for Tariq Kowalski is $160,000, an increase of 2 percent effective next quarter.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q019",
+   "type": "factual",
+   "user": "heidi",
+   "question": "What is the new base salary in compensation review COMP-9015?",
+   "expected_answer": "The new base salary is $230,000.",
+   "expected_doc_ids": [
+    "hr/confidential/comp-comp-9015.md"
+   ],
+   "answer": "The new base salary in compensation review COMP-9015 for Dana Sato is $230,000, an increase of 11 percent effective next quarter. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "hr/confidential/comp-comp-9015.md",
+    "hr/confidential/comp-comp-9433.md",
+    "hr/confidential/comp-comp-9059.md",
+    "hr/confidential/comp-comp-8659.md",
+    "hr/confidential/comp-comp-3108.md"
+   ],
+   "cited_doc_ids": [
+    "hr/confidential/comp-comp-9015.md"
+   ],
+   "latency_ms": 113.5,
+   "raw_answer": "The new base salary in compensation review COMP-9015 for Dana Sato is $230,000, an increase of 11 percent effective next quarter.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q020",
+   "type": "factual",
+   "user": "heidi",
+   "question": "What revenue does the quarterly forecast project for cost center CC-9768?",
+   "expected_answer": "$55.0 million.",
+   "expected_doc_ids": [
+    "finance/internal/forecast-cc-9768.md"
+   ],
+   "answer": "The quarterly forecast for cost center CC-9768 projects revenue of $55.0 million. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "finance/internal/forecast-cc-9768.md",
+    "finance/internal/forecast-cc-9714.md",
+    "finance/internal/forecast-cc-9799.md",
+    "finance/internal/forecast-cc-9774.md",
+    "finance/internal/forecast-cc-6463.md"
+   ],
+   "cited_doc_ids": [
+    "finance/internal/forecast-cc-9768.md"
+   ],
+   "latency_ms": 108.9,
+   "raw_answer": "The quarterly forecast for cost center CC-9768 projects revenue of $55.0 million.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q021",
+   "type": "factual",
+   "user": "carol",
+   "question": "What revenue does the quarterly forecast project for cost center CC-8873?",
+   "expected_answer": "$6.8 million.",
+   "expected_doc_ids": [
+    "finance/internal/forecast-cc-8873.md"
+   ],
+   "answer": "The quarterly forecast for cost center CC-8873 projects revenue of $6.8 million. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "finance/internal/forecast-cc-8873.md",
+    "finance/internal/forecast-cc-9193.md",
+    "finance/internal/forecast-cc-7633.md",
+    "finance/internal/forecast-cc-9083.md",
+    "finance/internal/forecast-cc-5792.md"
+   ],
+   "cited_doc_ids": [
+    "finance/internal/forecast-cc-8873.md"
+   ],
+   "latency_ms": 61.6,
+   "raw_answer": "The quarterly forecast for cost center CC-8873 projects revenue of $6.8 million.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q022",
+   "type": "factual",
+   "user": "heidi",
+   "question": "What revenue does the quarterly forecast project for cost center CC-5987?",
+   "expected_answer": "$17.3 million.",
+   "expected_doc_ids": [
+    "finance/internal/forecast-cc-5987.md"
+   ],
+   "answer": "The quarterly forecast for cost center CC-5987 projects revenue of $17.3 million. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "finance/internal/forecast-cc-5987.md",
+    "finance/internal/forecast-cc-9343.md",
+    "finance/internal/forecast-cc-5676.md",
+    "finance/internal/forecast-cc-5901.md",
+    "finance/internal/forecast-cc-5979.md"
+   ],
+   "cited_doc_ids": [
+    "finance/internal/forecast-cc-5987.md"
+   ],
+   "latency_ms": 127.7,
+   "raw_answer": "The quarterly forecast for cost center CC-5987 projects revenue of $17.3 million.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q023",
+   "type": "factual",
+   "user": "carol",
+   "question": "What is the daily meal per diem under expense policy EXP-488?",
+   "expected_answer": "$85 per day.",
+   "expected_doc_ids": [
+    "finance/public/expense-exp-488.md"
+   ],
+   "answer": "The daily meal per diem under expense policy EXP-488 is $85. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "finance/public/expense-exp-488.md",
+    "finance/public/expense-exp-350.md",
+    "finance/public/expense-exp-985.md",
+    "finance/public/expense-exp-386.md",
+    "finance/public/expense-exp-492.md"
+   ],
+   "cited_doc_ids": [
+    "finance/public/expense-exp-488.md"
+   ],
+   "latency_ms": 75.3,
+   "raw_answer": "The daily meal per diem under expense policy EXP-488 is $85.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q024",
+   "type": "factual",
+   "user": "erin",
+   "question": "What is the daily meal per diem under expense policy EXP-799?",
+   "expected_answer": "$147 per day.",
+   "expected_doc_ids": [
+    "finance/public/expense-exp-799.md"
+   ],
+   "answer": "The daily meal per diem under expense policy EXP-799 is $147. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "finance/public/expense-exp-799.md",
+    "finance/public/expense-exp-421.md",
+    "finance/public/expense-exp-199.md",
+    "finance/public/expense-exp-926.md",
+    "finance/public/expense-exp-985.md"
+   ],
+   "cited_doc_ids": [
+    "finance/public/expense-exp-799.md"
+   ],
+   "latency_ms": 94.6,
+   "raw_answer": "The daily meal per diem under expense policy EXP-799 is $147.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q025",
+   "type": "factual",
+   "user": "erin",
+   "question": "What is the liability cap in contract CTR-63684?",
+   "expected_answer": "The liability cap is $3,627,000.",
+   "expected_doc_ids": [
+    "legal/internal/contract-ctr-63684.md"
+   ],
+   "answer": "The liability cap in contract CTR-63684 with Crystal Capital is $3,627,000. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "legal/internal/contract-ctr-63684.md",
+    "legal/internal/contract-ctr-96671.md",
+    "legal/internal/contract-ctr-49381.md",
+    "legal/internal/contract-ctr-32658.md",
+    "legal/internal/contract-ctr-62355.md"
+   ],
+   "cited_doc_ids": [
+    "legal/internal/contract-ctr-63684.md"
+   ],
+   "latency_ms": 85.4,
+   "raw_answer": "The liability cap in contract CTR-63684 with Crystal Capital is $3,627,000.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q026",
+   "type": "factual",
+   "user": "grace",
+   "question": "What is the liability cap in contract CTR-63244?",
+   "expected_answer": "The liability cap is $4,121,000.",
+   "expected_doc_ids": [
+    "legal/internal/contract-ctr-63244.md"
+   ],
+   "answer": "The liability cap in contract CTR-63244 with Golden Health is $4,121,000. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "legal/internal/contract-ctr-63244.md",
+    "legal/internal/contract-ctr-93541.md",
+    "legal/internal/contract-ctr-43806.md",
+    "legal/internal/contract-ctr-23554.md",
+    "legal/internal/contract-ctr-54647.md"
+   ],
+   "cited_doc_ids": [
+    "legal/internal/contract-ctr-63244.md"
+   ],
+   "latency_ms": 51.6,
+   "raw_answer": "The liability cap in contract CTR-63244 with Golden Health is $4,121,000.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q027",
+   "type": "factual",
+   "user": "erin",
+   "question": "What is the liability cap in contract CTR-93239?",
+   "expected_answer": "The liability cap is $933,000.",
+   "expected_doc_ids": [
+    "legal/internal/contract-ctr-93239.md"
+   ],
+   "answer": "The liability cap in contract CTR-93239 with Granite Labs is $933,000. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "legal/internal/contract-ctr-93239.md",
+    "legal/internal/contract-ctr-96671.md",
+    "legal/internal/contract-ctr-32658.md",
+    "legal/internal/contract-ctr-19413.md",
+    "legal/internal/contract-ctr-62355.md"
+   ],
+   "cited_doc_ids": [
+    "legal/internal/contract-ctr-93239.md"
+   ],
+   "latency_ms": 87.3,
+   "raw_answer": "The liability cap in contract CTR-93239 with Granite Labs is $933,000.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q028",
+   "type": "factual",
+   "user": "heidi",
+   "question": "How long must customer records be retained under compliance guide CMPL-480?",
+   "expected_answer": "9 years.",
+   "expected_doc_ids": [
+    "legal/public/compliance-cmpl-480.md"
+   ],
+   "answer": "Under compliance guide CMPL-480, customer records must be retained for 9 years. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "legal/public/compliance-cmpl-480.md",
+    "legal/public/compliance-cmpl-334.md",
+    "legal/public/compliance-cmpl-490.md",
+    "legal/public/compliance-cmpl-880.md",
+    "legal/public/compliance-cmpl-800.md"
+   ],
+   "cited_doc_ids": [
+    "legal/public/compliance-cmpl-480.md"
+   ],
+   "latency_ms": 84.3,
+   "raw_answer": "Under compliance guide CMPL-480, customer records must be retained for 9 years.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q029",
+   "type": "factual",
+   "user": "heidi",
+   "question": "How long must customer records be retained under compliance guide CMPL-800?",
+   "expected_answer": "8 years.",
+   "expected_doc_ids": [
+    "legal/public/compliance-cmpl-800.md"
+   ],
+   "answer": "Under compliance guide CMPL-800, customer records must be retained for 8 years. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "legal/public/compliance-cmpl-800.md",
+    "legal/public/compliance-cmpl-880.md",
+    "legal/public/compliance-cmpl-750.md",
+    "legal/public/compliance-cmpl-444.md",
+    "legal/public/compliance-cmpl-448.md"
+   ],
+   "cited_doc_ids": [
+    "legal/public/compliance-cmpl-800.md"
+   ],
+   "latency_ms": 82.9,
+   "raw_answer": "Under compliance guide CMPL-800, customer records must be retained for 8 years.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q030",
+   "type": "factual",
+   "user": "erin",
+   "question": "Who is the account owner in account plan ACCT-8829?",
+   "expected_answer": "Nadia Zielinski.",
+   "expected_doc_ids": [
+    "sales/internal/account-acct-8829.md"
+   ],
+   "answer": "The account owner in account plan ACCT-8829 is Nadia Zielinski. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "sales/internal/account-acct-8829.md",
+    "sales/internal/account-acct-8628.md",
+    "sales/internal/account-acct-5416.md",
+    "sales/internal/account-acct-5429.md",
+    "sales/internal/account-acct-3310.md"
+   ],
+   "cited_doc_ids": [
+    "sales/internal/account-acct-8829.md"
+   ],
+   "latency_ms": 124.2,
+   "raw_answer": "The account owner in account plan ACCT-8829 is Nadia Zielinski.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q031",
+   "type": "factual",
+   "user": "erin",
+   "question": "Who is the account owner in account plan ACCT-5149?",
+   "expected_answer": "Luca Nair.",
+   "expected_doc_ids": [
+    "sales/internal/account-acct-5149.md"
+   ],
+   "answer": "The account owner in account plan ACCT-5149 is Luca Nair. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "sales/internal/account-acct-5149.md",
+    "sales/internal/account-acct-7113.md",
+    "sales/internal/account-acct-5416.md",
+    "sales/internal/account-acct-7163.md",
+    "sales/internal/account-acct-6334.md"
+   ],
+   "cited_doc_ids": [
+    "sales/internal/account-acct-5149.md"
+   ],
+   "latency_ms": 120.9,
+   "raw_answer": "The account owner in account plan ACCT-5149 is Luca Nair.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q032",
+   "type": "factual",
+   "user": "erin",
+   "question": "Who is the account owner in account plan ACCT-1147?",
+   "expected_answer": "Rafael Adeyemi.",
+   "expected_doc_ids": [
+    "sales/internal/account-acct-1147.md"
+   ],
+   "answer": "The account owner in account plan ACCT-1147 is Rafael Adeyemi. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "sales/internal/account-acct-1147.md",
+    "sales/internal/account-acct-1237.md",
+    "sales/internal/account-acct-9455.md",
+    "sales/internal/account-acct-9487.md",
+    "sales/internal/account-acct-8004.md"
+   ],
+   "cited_doc_ids": [
+    "sales/internal/account-acct-1147.md"
+   ],
+   "latency_ms": 126.9,
+   "raw_answer": "The account owner in account plan ACCT-1147 is Rafael Adeyemi.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q033",
+   "type": "factual",
+   "user": "heidi",
+   "question": "What is the list price in product sheet PRD-755?",
+   "expected_answer": "$60 per seat per month.",
+   "expected_doc_ids": [
+    "sales/public/product-prd-755.md"
+   ],
+   "answer": "The list price in product sheet PRD-755 is $60 per seat per month for logistics operators. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "sales/public/product-prd-755.md",
+    "sales/public/product-prd-752.md",
+    "sales/public/product-prd-346.md",
+    "sales/public/product-prd-100.md",
+    "sales/public/product-prd-855.md"
+   ],
+   "cited_doc_ids": [
+    "sales/public/product-prd-755.md"
+   ],
+   "latency_ms": 102.6,
+   "raw_answer": "The list price in product sheet PRD-755 is $60 per seat per month for logistics operators.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q034",
+   "type": "factual",
+   "user": "grace",
+   "question": "What is the budget for campaign CMP-8057?",
+   "expected_answer": "$733,000.",
+   "expected_doc_ids": [
+    "marketing/public/campaign-cmp-8057.md"
+   ],
+   "answer": "The budget for Campaign CMP-8057 is $733,000. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "marketing/public/campaign-cmp-8057.md",
+    "marketing/public/campaign-cmp-8017.md",
+    "marketing/public/campaign-cmp-8649.md",
+    "marketing/public/campaign-cmp-8610.md",
+    "marketing/public/campaign-cmp-1494.md"
+   ],
+   "cited_doc_ids": [
+    "marketing/public/campaign-cmp-8057.md"
+   ],
+   "latency_ms": 50.9,
+   "raw_answer": "The budget for Campaign CMP-8057 is $733,000.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q035",
+   "type": "factual",
+   "user": "carol",
+   "question": "What is the budget for campaign CMP-3884?",
+   "expected_answer": "$471,000.",
+   "expected_doc_ids": [
+    "marketing/public/campaign-cmp-3884.md"
+   ],
+   "answer": "The budget for Campaign CMP-3884 is $471,000. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "marketing/public/campaign-cmp-3884.md",
+    "marketing/public/campaign-cmp-3686.md",
+    "marketing/public/campaign-cmp-9769.md",
+    "marketing/public/campaign-cmp-8649.md",
+    "marketing/public/campaign-cmp-8820.md"
+   ],
+   "cited_doc_ids": [
+    "marketing/public/campaign-cmp-3884.md"
+   ],
+   "latency_ms": 47.8,
+   "raw_answer": "The budget for Campaign CMP-3884 is $471,000.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q036",
+   "type": "factual",
+   "user": "heidi",
+   "question": "What service credit applies under vendor agreement VND-1238?",
+   "expected_answer": "16 percent per missed month.",
+   "expected_doc_ids": [
+    "operations/internal/vendor-vnd-1238.md"
+   ],
+   "answer": "Under vendor agreement VND-1238, a missed month triggers a service credit of 16 percent. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "operations/internal/vendor-vnd-1238.md",
+    "operations/internal/vendor-vnd-1348.md",
+    "operations/internal/vendor-vnd-3008.md",
+    "operations/internal/vendor-vnd-5346.md",
+    "operations/internal/vendor-vnd-6188.md"
+   ],
+   "cited_doc_ids": [
+    "operations/internal/vendor-vnd-1238.md"
+   ],
+   "latency_ms": 86.8,
+   "raw_answer": "Under vendor agreement VND-1238, a missed month triggers a service credit of 16 percent.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q037",
+   "type": "factual",
+   "user": "erin",
+   "question": "What service credit applies under vendor agreement VND-2291?",
+   "expected_answer": "15 percent per missed month.",
+   "expected_doc_ids": [
+    "operations/internal/vendor-vnd-2291.md"
+   ],
+   "answer": "Under vendor agreement VND-2291 with Coral Foods, a missed month triggers a service credit of 15 percent. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "operations/internal/vendor-vnd-2291.md",
+    "operations/internal/vendor-vnd-1348.md",
+    "operations/internal/vendor-vnd-2301.md",
+    "operations/internal/vendor-vnd-8972.md",
+    "operations/internal/vendor-vnd-5412.md"
+   ],
+   "cited_doc_ids": [
+    "operations/internal/vendor-vnd-2291.md"
+   ],
+   "latency_ms": 87.3,
+   "raw_answer": "Under vendor agreement VND-2291 with Coral Foods, a missed month triggers a service credit of 15 percent.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q038",
+   "type": "factual",
+   "user": "heidi",
+   "question": "On what date will the office in facility notice FAC-7628 be closed?",
+   "expected_answer": "February 7, 2026.",
+   "expected_doc_ids": [
+    "operations/public/facility-fac-7628.md"
+   ],
+   "answer": "The office in facility notice FAC-7628 will be closed on February 7, 2026. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "operations/public/facility-fac-7628.md",
+    "operations/public/facility-fac-6904.md",
+    "operations/public/facility-fac-4160.md",
+    "operations/public/facility-fac-2916.md",
+    "operations/public/facility-fac-5615.md"
+   ],
+   "cited_doc_ids": [
+    "operations/public/facility-fac-7628.md"
+   ],
+   "latency_ms": 89.0,
+   "raw_answer": "The office in facility notice FAC-7628 will be closed on February 7, 2026.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 1.0,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q039",
+   "type": "multi_doc",
+   "user": "erin",
+   "question": "What is the approved budget of Project GEMINI-621 and what is its revised go-live date?",
+   "expected_answer": "Project GEMINI-621 has a budget of $2.2 million and its go-live was revised to March 3, 2027.",
+   "expected_doc_ids": [
+    "engineering/projects/gemini-621/status-gemini-621.md",
+    "engineering/projects/gemini-621/spec-gemini-621.md"
+   ],
+   "answer": "The approved budget of Project GEMINI-621 is $2.2 million, and the revised go-live date is March 3, 2027. [2]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/projects/gemini-621/spec-gemini-621.md",
+    "engineering/projects/gemini-621/status-gemini-621.md",
+    "engineering/projects/gemini-920/spec-gemini-920.md",
+    "engineering/projects/gemini-239/spec-gemini-239.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/projects/gemini-621/status-gemini-621.md"
+   ],
+   "latency_ms": 120.2,
+   "raw_answer": "The approved budget of Project GEMINI-621 is $2.2 million, and the revised go-live date is March 3, 2027.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true,
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 0.5,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q040",
+   "type": "multi_doc",
+   "user": "heidi",
+   "question": "What is the approved budget of Project PEGASUS-570 and what is its revised go-live date?",
+   "expected_answer": "Project PEGASUS-570 has a budget of $5.7 million and its go-live was revised to September 21, 2026.",
+   "expected_doc_ids": [
+    "engineering/projects/pegasus-570/status-pegasus-570.md",
+    "engineering/projects/pegasus-570/spec-pegasus-570.md"
+   ],
+   "answer": "The approved budget of Project PEGASUS-570 is $5.7 million, and the revised go-live date is September 21, 2026. [2]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/projects/pegasus-570/spec-pegasus-570.md",
+    "engineering/projects/pegasus-570/status-pegasus-570.md",
+    "engineering/projects/pegasus-150/spec-pegasus-150.md",
+    "engineering/projects/pegasus-680/spec-pegasus-680.md",
+    "engineering/projects/pegasus-994/spec-pegasus-994.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/projects/pegasus-570/status-pegasus-570.md"
+   ],
+   "latency_ms": 114.8,
+   "raw_answer": "The approved budget of Project PEGASUS-570 is $5.7 million, and the revised go-live date is September 21, 2026.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true,
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 0.5,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q041",
+   "type": "multi_doc",
+   "user": "heidi",
+   "question": "What is the approved budget of Project LUPUS-762 and what is its revised go-live date?",
+   "expected_answer": "Project LUPUS-762 has a budget of $6.0 million and its go-live was revised to January 15, 2027.",
+   "expected_doc_ids": [
+    "engineering/projects/lupus-762/status-lupus-762.md",
+    "engineering/projects/lupus-762/spec-lupus-762.md"
+   ],
+   "answer": "The approved budget of Project LUPUS-762 is $6.0 million. The revised go-live date has been changed to January 15, 2027. [2]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/projects/lupus-762/spec-lupus-762.md",
+    "engineering/projects/lupus-762/status-lupus-762.md",
+    "engineering/projects/lupus-400/status-lupus-400.md",
+    "engineering/projects/lupus-446/status-lupus-446.md",
+    "engineering/projects/lupus-474/spec-lupus-474.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/projects/lupus-762/status-lupus-762.md"
+   ],
+   "latency_ms": 106.6,
+   "raw_answer": "The approved budget of Project LUPUS-762 is $6.0 million. The revised go-live date has been changed to January 15, 2027.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true,
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 0.5,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q042",
+   "type": "multi_doc",
+   "user": "erin",
+   "question": "What is the approved budget of Project TUCANA-569 and what is its revised go-live date?",
+   "expected_answer": "Project TUCANA-569 has a budget of $6.4 million and its go-live was revised to April 21, 2027.",
+   "expected_doc_ids": [
+    "engineering/projects/tucana-569/status-tucana-569.md",
+    "engineering/projects/tucana-569/spec-tucana-569.md"
+   ],
+   "answer": "The approved budget of Project TUCANA-569 is $6.4 million, and the revised go-live date has been changed to April 21, 2027. [2]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/projects/tucana-569/spec-tucana-569.md",
+    "engineering/projects/tucana-569/status-tucana-569.md",
+    "engineering/projects/tucana-550/spec-tucana-550.md",
+    "engineering/projects/tucana-220/spec-tucana-220.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/projects/tucana-569/status-tucana-569.md"
+   ],
+   "latency_ms": 107.6,
+   "raw_answer": "The approved budget of Project TUCANA-569 is $6.4 million, and the revised go-live date has been changed to April 21, 2027.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true,
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 0.5,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q043",
+   "type": "multi_doc",
+   "user": "heidi",
+   "question": "What is the approved budget of Project VELA-561 and what is its revised go-live date?",
+   "expected_answer": "Project VELA-561 has a budget of $4.7 million and its go-live was revised to April 3, 2026.",
+   "expected_doc_ids": [
+    "engineering/projects/vela-561/status-vela-561.md",
+    "engineering/projects/vela-561/spec-vela-561.md"
+   ],
+   "answer": "The approved budget of Project VELA-561 is $4.7 million. The revised go-live date has been changed to April 3, 2026. [2]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/projects/vela-561/spec-vela-561.md",
+    "engineering/projects/vela-561/status-vela-561.md",
+    "engineering/projects/vela-647/spec-vela-647.md",
+    "engineering/projects/vela-904/spec-vela-904.md",
+    "engineering/projects/vela-836/status-vela-836.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/projects/vela-561/status-vela-561.md"
+   ],
+   "latency_ms": 115.8,
+   "raw_answer": "The approved budget of Project VELA-561 is $4.7 million. The revised go-live date has been changed to April 3, 2026.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true,
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 0.5,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q044",
+   "type": "multi_doc",
+   "user": "dave",
+   "question": "What is the approved budget of Project VELA-376 and what is its revised go-live date?",
+   "expected_answer": "Project VELA-376 has a budget of $1.4 million and its go-live was revised to December 3, 2026.",
+   "expected_doc_ids": [
+    "engineering/projects/vela-376/status-vela-376.md",
+    "engineering/projects/vela-376/spec-vela-376.md"
+   ],
+   "answer": "The approved budget of Project VELA-376 is $1.4 million, and the revised go-live date is December 3, 2026. [2]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/projects/vela-376/spec-vela-376.md",
+    "engineering/projects/vela-376/status-vela-376.md",
+    "engineering/projects/vela-904/spec-vela-904.md",
+    "engineering/projects/vela-836/status-vela-836.md",
+    "engineering/projects/vela-836/spec-vela-836.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/projects/vela-376/status-vela-376.md"
+   ],
+   "latency_ms": 81.2,
+   "raw_answer": "The approved budget of Project VELA-376 is $1.4 million, and the revised go-live date is December 3, 2026.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true,
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 0.5,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q045",
+   "type": "multi_doc",
+   "user": "heidi",
+   "question": "What is the approved budget of Project OCTANS-920 and what is its revised go-live date?",
+   "expected_answer": "Project OCTANS-920 has a budget of $4.1 million and its go-live was revised to July 25, 2026.",
+   "expected_doc_ids": [
+    "engineering/projects/octans-920/status-octans-920.md",
+    "engineering/projects/octans-920/spec-octans-920.md"
+   ],
+   "answer": "The approved budget for Project OCTANS-920 is $4.1 million, and the revised go-live date is July 25, 2026. [1]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/projects/octans-920/status-octans-920.md",
+    "engineering/projects/octans-920/spec-octans-920.md",
+    "engineering/projects/octans-582/spec-octans-582.md",
+    "engineering/projects/octans-887/status-octans-887.md",
+    "engineering/projects/octans-417/spec-octans-417.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/projects/octans-920/status-octans-920.md"
+   ],
+   "latency_ms": 113.3,
+   "raw_answer": "The approved budget for Project OCTANS-920 is $4.1 million, and the revised go-live date is July 25, 2026.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true,
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 0.5,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q046",
+   "type": "multi_doc",
+   "user": "heidi",
+   "question": "What is the approved budget of Project CORVUS-230 and what is its revised go-live date?",
+   "expected_answer": "Project CORVUS-230 has a budget of $7.2 million and its go-live was revised to April 19, 2027.",
+   "expected_doc_ids": [
+    "engineering/projects/corvus-230/status-corvus-230.md",
+    "engineering/projects/corvus-230/spec-corvus-230.md"
+   ],
+   "answer": "The approved budget of Project CORVUS-230 is $7.2 million. The revised go-live date has been changed to April 19, 2027. [2]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/projects/corvus-230/spec-corvus-230.md",
+    "engineering/projects/corvus-230/status-corvus-230.md",
+    "engineering/projects/corvus-864/spec-corvus-864.md",
+    "engineering/projects/corvus-496/spec-corvus-496.md",
+    "engineering/projects/corvus-406/spec-corvus-406.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/projects/corvus-230/status-corvus-230.md"
+   ],
+   "latency_ms": 108.0,
+   "raw_answer": "The approved budget of Project CORVUS-230 is $7.2 million. The revised go-live date has been changed to April 19, 2027.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true,
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 0.5,
+   "groundedness": 0.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q047",
+   "type": "multi_doc",
+   "user": "heidi",
+   "question": "What is the approved budget of Project CARINA-410 and what is its revised go-live date?",
+   "expected_answer": "Project CARINA-410 has a budget of $2.7 million and its go-live was revised to April 29, 2027.",
+   "expected_doc_ids": [
+    "engineering/projects/carina-410/status-carina-410.md",
+    "engineering/projects/carina-410/spec-carina-410.md"
+   ],
+   "answer": "The approved budget of Project CARINA-410 is $2.7 million, and the revised go-live date has been changed to April 29, 2027. [2]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/projects/carina-410/spec-carina-410.md",
+    "engineering/projects/carina-410/status-carina-410.md",
+    "engineering/projects/carina-959/spec-carina-959.md",
+    "engineering/projects/carina-910/status-carina-910.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/projects/carina-410/status-carina-410.md"
+   ],
+   "latency_ms": 107.1,
+   "raw_answer": "The approved budget of Project CARINA-410 is $2.7 million, and the revised go-live date has been changed to April 29, 2027.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true,
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 0.5,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q048",
+   "type": "multi_doc",
+   "user": "heidi",
+   "question": "What is the approved budget of Project MENSA-390 and what is its revised go-live date?",
+   "expected_answer": "Project MENSA-390 has a budget of $8.4 million and its go-live was revised to February 9, 2027.",
+   "expected_doc_ids": [
+    "engineering/projects/mensa-390/status-mensa-390.md",
+    "engineering/projects/mensa-390/spec-mensa-390.md"
+   ],
+   "answer": "The approved budget of Project MENSA-390 is $8.4 million, and the revised go-live date is February 9, 2027. [2]",
+   "refused": false,
+   "retrieved_doc_ids": [
+    "engineering/projects/mensa-390/spec-mensa-390.md",
+    "engineering/projects/mensa-390/status-mensa-390.md",
+    "engineering/projects/mensa-850/spec-mensa-850.md",
+    "engineering/projects/mensa-965/spec-mensa-965.md"
+   ],
+   "cited_doc_ids": [
+    "engineering/projects/mensa-390/status-mensa-390.md"
+   ],
+   "latency_ms": 109.1,
+   "raw_answer": "The approved budget of Project MENSA-390 is $8.4 million, and the revised go-live date is February 9, 2027.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "recall_at_5": 1.0,
+   "mrr": 1.0,
+   "ndcg_at_5": 1.0,
+   "facts_found": [
+    true,
+    true
+   ],
+   "correct": true,
+   "citation_precision": 1.0,
+   "citation_recall": 0.5,
+   "groundedness": 1.0,
+   "false_refusal": false,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q049",
+   "type": "permission_denied",
+   "user": "dave",
+   "question": "What is the new base salary in compensation review COMP-6248?",
+   "expected_answer": "Refuse: the user has no access to the only document with this fact.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "engineering/projects/carina-649/spec-carina-649.md",
+    "executive/public/allhands-ah-211.md",
+    "engineering/internal/runbook-rb-6934.md",
+    "executive/public/allhands-ah-558.md",
+    "engineering/internal/runbook-rb-9804.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 63.0,
+   "raw_answer": "I can't find this in documents you have access to.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q050",
+   "type": "permission_denied",
+   "user": "dave",
+   "question": "What is the new base salary in compensation review COMP-7374?",
+   "expected_answer": "Refuse: the user has no access to the only document with this fact.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "executive/public/allhands-ah-714.md",
+    "executive/public/allhands-ah-920.md",
+    "executive/public/allhands-ah-400.md",
+    "executive/public/allhands-ah-737.md",
+    "executive/public/allhands-ah-211.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 60.5,
+   "raw_answer": "I can't find this in documents you have access to.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q051",
+   "type": "permission_denied",
+   "user": "grace",
+   "question": "How many weeks of severance does restructuring plan RS-64 offer?",
+   "expected_answer": "Refuse: the user has no access to the only document with this fact.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "hr/public/policy-hr-pol-960.md",
+    "hr/public/policy-hr-pol-637.md",
+    "hr/public/policy-hr-pol-570.md",
+    "hr/public/policy-hr-pol-642.md",
+    "marketing/public/campaign-cmp-5885.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 46.7,
+   "raw_answer": "I can't find this in documents you have access to.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q052",
+   "type": "permission_denied",
+   "user": "bob",
+   "question": "What is the new base salary in compensation review COMP-5695?",
+   "expected_answer": "Refuse: the user has no access to the only document with this fact.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "executive/public/allhands-ah-714.md",
+    "executive/public/allhands-ah-280.md",
+    "executive/public/allhands-ah-179.md",
+    "executive/public/allhands-ah-400.md",
+    "executive/public/allhands-ah-645.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 43.9,
+   "raw_answer": "I can't find this in documents you have access to.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q053",
+   "type": "permission_denied",
+   "user": "dave",
+   "question": "What is the new base salary in compensation review COMP-8099?",
+   "expected_answer": "Refuse: the user has no access to the only document with this fact.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "executive/public/allhands-ah-901.md",
+    "executive/public/allhands-ah-809.md",
+    "executive/public/allhands-ah-211.md",
+    "engineering/projects/carina-649/spec-carina-649.md",
+    "executive/public/allhands-ah-558.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 64.5,
+   "raw_answer": "I can't find this in documents you have access to.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q054",
+   "type": "permission_denied",
+   "user": "bob",
+   "question": "What is the new base salary in compensation review COMP-7933?",
+   "expected_answer": "Refuse: the user has no access to the only document with this fact.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "executive/public/allhands-ah-280.md",
+    "executive/public/allhands-ah-400.md",
+    "engineering/public/update-eng-upd-918.md",
+    "executive/public/allhands-ah-820.md",
+    "engineering/public/update-eng-upd-235.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 49.5,
+   "raw_answer": "I can't find this in documents you have access to.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q055",
+   "type": "permission_denied",
+   "user": "grace",
+   "question": "What is the new base salary in compensation review COMP-2721?",
+   "expected_answer": "Refuse: the user has no access to the only document with this fact.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "executive/public/allhands-ah-280.md",
+    "executive/public/allhands-ah-400.md",
+    "executive/public/allhands-ah-724.md",
+    "executive/public/allhands-ah-558.md",
+    "executive/public/allhands-ah-920.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 42.2,
+   "raw_answer": "I can't find this in documents you have access to.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q056",
+   "type": "permission_denied",
+   "user": "carol",
+   "question": "What is the new base salary in compensation review COMP-6687?",
+   "expected_answer": "Refuse: the user has no access to the only document with this fact.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "hr/confidential/comp-comp-1296.md",
+    "hr/confidential/comp-comp-9978.md",
+    "hr/confidential/comp-comp-6528.md",
+    "hr/confidential/comp-comp-1909.md",
+    "hr/confidential/comp-comp-7654.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 40.4,
+   "raw_answer": "The new base salary in compensation review COMP-6687 is $128,000, an increase of 13 percent effective next quarter.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q057",
+   "type": "permission_denied",
+   "user": "alice",
+   "question": "What is the proposed valuation in acquisition memo ACQ-537?",
+   "expected_answer": "Refuse: the user has no access to the only document with this fact.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "hr/confidential/comp-comp-5334.md",
+    "sales/public/product-prd-537.md",
+    "hr/confidential/comp-comp-5073.md",
+    "hr/confidential/comp-comp-5025.md",
+    "hr/confidential/comp-comp-1532.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 31.6,
+   "raw_answer": "The proposed valuation in acquisition memo ACQ-537 is $109 per seat per month for small businesses.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q058",
+   "type": "permission_denied",
+   "user": "grace",
+   "question": "What is the new base salary in compensation review COMP-3825?",
+   "expected_answer": "Refuse: the user has no access to the only document with this fact.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "legal/internal/contract-ctr-97623.md",
+    "executive/public/allhands-ah-280.md",
+    "executive/public/allhands-ah-382.md",
+    "executive/public/allhands-ah-558.md",
+    "engineering/public/update-eng-upd-285.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 41.9,
+   "raw_answer": "I can't find this in documents you have access to.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q059",
+   "type": "unanswerable",
+   "user": "bob",
+   "question": "What is the approved budget of Project ZENITH-000?",
+   "expected_answer": "Refuse: no document contains this information.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "marketing/public/campaign-cmp-2358.md",
+    "marketing/public/campaign-cmp-8047.md",
+    "marketing/public/campaign-cmp-7732.md",
+    "marketing/public/campaign-cmp-6932.md",
+    "marketing/public/campaign-cmp-3129.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 42.0,
+   "raw_answer": "I can't find this in documents you have access to.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q060",
+   "type": "unanswerable",
+   "user": "grace",
+   "question": "How many minutes of downtime did incident INC-00001 cause?",
+   "expected_answer": "Refuse: no document contains this information.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "legal/internal/contract-ctr-98071.md",
+    "legal/internal/contract-ctr-50116.md",
+    "legal/internal/contract-ctr-50661.md",
+    "legal/internal/contract-ctr-67350.md",
+    "legal/internal/contract-ctr-53007.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 37.9,
+   "raw_answer": "I can't find this in documents you have access to.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q061",
+   "type": "unanswerable",
+   "user": "dave",
+   "question": "What is the liability cap in contract CTR-00000?",
+   "expected_answer": "Refuse: no document contains this information.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "sales/public/product-prd-132.md",
+    "legal/public/compliance-cmpl-199.md",
+    "marketing/public/campaign-cmp-4709.md",
+    "marketing/public/campaign-cmp-5798.md",
+    "marketing/public/campaign-cmp-9227.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 48.6,
+   "raw_answer": "I can't find this in documents you have access to.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q062",
+   "type": "unanswerable",
+   "user": "erin",
+   "question": "How many weeks of paid parental leave does HR policy HR-POL-000 provide?",
+   "expected_answer": "Refuse: no document contains this information.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "hr/public/policy-hr-pol-769.md",
+    "hr/public/policy-hr-pol-404.md",
+    "hr/public/policy-hr-pol-179.md",
+    "hr/public/policy-hr-pol-546.md",
+    "hr/public/policy-hr-pol-371.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 104.6,
+   "raw_answer": "Under HR policy HR-POL-000, employees in the Falls office receive 26 weeks of paid parental leave and 29 days of annual leave per year.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q063",
+   "type": "unanswerable",
+   "user": "bob",
+   "question": "What is the proposed valuation in acquisition memo ACQ-000?",
+   "expected_answer": "Refuse: no document contains this information.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "sales/internal/account-acct-1432.md",
+    "sales/internal/account-acct-9492.md",
+    "sales/internal/account-acct-9140.md",
+    "sales/internal/account-acct-8976.md",
+    "sales/internal/account-acct-4970.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 35.6,
+   "raw_answer": "I can't find this in documents you have access to.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  },
+  {
+   "qid": "q064",
+   "type": "unanswerable",
+   "user": "heidi",
+   "question": "Who is the account owner in account plan ACCT-0000?",
+   "expected_answer": "Refuse: no document contains this information.",
+   "expected_doc_ids": [],
+   "answer": "I can't find this in documents you have access to.",
+   "refused": true,
+   "retrieved_doc_ids": [
+    "sales/internal/account-acct-6334.md",
+    "sales/internal/account-acct-8628.md",
+    "sales/internal/account-acct-2250.md",
+    "sales/internal/account-acct-3310.md",
+    "sales/internal/account-acct-8004.md"
+   ],
+   "cited_doc_ids": [],
+   "latency_ms": 114.8,
+   "raw_answer": "I can't find this in documents you have access to.",
+   "leak": false,
+   "leak_detail": {
+    "docs": [],
+    "values": []
+   },
+   "correct_refusal": true,
+   "passed": true,
+   "fail_reasons": []
+  }
+ ],
+ "created_at": "2026-11-21T23:46:08"
+}

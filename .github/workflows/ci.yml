@@ -1,0 +1,93 @@
+name: ci
+
+on:
+  push:
+    branches: [main, "demo/**"]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOCASSIST_DATABASE_URL: postgresql://docassist:docassist@localhost:5432/docassist
+
+jobs:
+  tests:
+    name: lint + tests (guardrails, permissions, indexer, metrics)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env: {POSTGRES_USER: docassist, POSTGRES_PASSWORD: docassist, POSTGRES_DB: docassist}
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U docassist" --health-interval 2s --health-retries 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with: {python-version: "3.12"}
+      - run: uv sync
+      - run: uv run ruff check docassist tests ui
+      - run: uv run pytest -q -m "not slow"
+
+  eval-gate:
+    name: evaluation release gate
+    needs: tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env: {POSTGRES_USER: docassist, POSTGRES_PASSWORD: docassist, POSTGRES_DB: docassist}
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U docassist" --health-interval 2s --health-retries 30
+    env:
+      OLLAMA_MODELS: /home/runner/.ollama/models
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with: {python-version: "3.12"}
+      - run: uv sync
+
+      - name: Cache Ollama models
+        uses: actions/cache@v4
+        with:
+          path: /home/runner/.ollama/models
+          key: ollama-nomic-embed-text-qwen2.5-1.5b-v1
+
+      # Embedding + LLM response caches are content addressed (model + exact input), so they are never stale:
+      # any change to chunking, retrieval or prompts changes the key and is recomputed.
+      - name: Cache embeddings and LLM responses
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: docassist-cache-${{ hashFiles('docassist/**/*.py', 'eval/questions.jsonl') }}
+          restore-keys: docassist-cache-
+
+      - name: Install and start Ollama
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          sudo systemctl stop ollama || true
+          mkdir -p "$OLLAMA_MODELS"
+          nohup ollama serve > /tmp/ollama.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf localhost:11434/api/tags && break; sleep 1; done
+          ollama pull nomic-embed-text
+          ollama pull qwen2.5:1.5b
+
+      - name: Generate synthetic data (seeded) and check the eval set is unchanged
+        run: |
+          uv run docassist generate --seed 42
+          git diff --exit-code eval/questions.jsonl
+
+      - name: Index
+        run: uv run docassist index
+
+      - name: Run evaluation with release gate
+        run: uv run docassist eval --gate --label "ci-${{ github.sha }}" --summary-md "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload evaluation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-report
+          path: eval/results/*.json

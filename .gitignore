@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+.cache/
+data/
+eval/results/*.json
+!eval/results/.gitkeep
+!eval/results/baseline_run.json
+!eval/results/gate_failure_run.json
+.env
+.DS_Store

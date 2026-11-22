@@ -1,0 +1,77 @@
+# Full local stack:  docker compose up --build   ->  UI on http://localhost:8501, API on http://localhost:8000
+#
+# Ollama: by default the containers use an Ollama running on the host (fast on macOS, where Docker cannot use the
+# GPU). To run Ollama in a container instead:  OLLAMA_URL=http://ollama:11434 docker compose --profile ollama up
+#
+# All credentials below are throw-away development defaults for a local, synthetic-data-only database.
+x-app: &app
+  build: .
+  image: docassist:latest
+  environment:
+    DOCASSIST_DATABASE_URL: postgresql://docassist:docassist@postgres:5432/docassist
+    DOCASSIST_OLLAMA_URL: ${OLLAMA_URL:-http://host.docker.internal:11434}
+    DOCASSIST_DATA_DIR: /app/data
+    DOCASSIST_CACHE_DIR: /app/.cache
+    DOCASSIST_EVAL_DIR: /app/eval
+  volumes:
+    - ./data:/app/data        # generated corpus, directory, audit JSONL
+    - ./eval:/app/eval        # questions, thresholds, baseline, results
+    - ./.cache:/app/.cache    # embedding + LLM response caches (shared with local runs)
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: docassist
+      POSTGRES_PASSWORD: docassist
+      POSTGRES_DB: docassist
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U docassist"]
+      interval: 2s
+      retries: 30
+
+  # One-shot: create schema, generate the synthetic data (only if missing), load business tables, incremental index.
+  init:
+    <<: *app
+    command: >
+      sh -c "docassist init &&
+             ([ -f /app/data/identity.json ] || docassist generate --seed 42) &&
+             docassist index"
+    depends_on:
+      postgres: {condition: service_healthy}
+    restart: "no"
+
+  api:
+    <<: *app
+    command: uvicorn docassist.api.main:app --host 0.0.0.0 --port 8000
+    ports: ["8000:8000"]
+    depends_on:
+      init: {condition: service_completed_successfully}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      retries: 20
+
+  ui:
+    <<: *app
+    command: streamlit run ui/app.py --server.port 8501 --server.address 0.0.0.0 --server.headless true
+    environment:
+      DOCASSIST_API_URL: http://api:8000
+    ports: ["8501:8501"]
+    depends_on:
+      api: {condition: service_healthy}
+
+  # Optional containerised Ollama (large image; CPU-only on macOS).
+  ollama:
+    image: ollama/ollama:latest
+    ports: ["11434:11434"]
+    volumes: [ollama:/root/.ollama]
+    profiles: [ollama]
+
+volumes:
+  pgdata:
+  ollama:
